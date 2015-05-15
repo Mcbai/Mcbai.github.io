@@ -220,6 +220,22 @@ a {
   position: relative;
   z-index: 100;
 }
+#container #mobile-nav #header .profilepic img.show {
+  -webkit-transition-duration: 0.6s;
+  -moz-transition-duration: 0.6s;
+  -ms-transition-duration: 0.6s;
+  transition-duration: 0.6s;
+  -ms-transition-duration: 0.6s;
+  -webkit-transition-duration: 0.6s;
+}
+#container #mobile-nav #header .profilepic img.show:hover {
+  -webkit-transform: rotate(30deg);
+  -moz-transform: rotate(30deg);
+  -ms-transform: rotate(30deg);
+  transform: rotate(30deg);
+  -ms-transform: rotate(30deg);
+  -webkit-transform: rotate(30deg);
+}
 #container #mobile-nav #header .header-menu {
   height: auto;
   margin: 10px;
