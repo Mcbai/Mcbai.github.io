@@ -232,28 +232,6 @@
         <p>AJAX 是一种与服务器交换数据的技术，可以在不用刷新整个页面的情况下更新网页的一部分。在现如今的前端开发中，ajax技术被广泛使用，所以作为一个前端开发人员，ajax是必备的技能。</p>
 <p>现在关于ajax的使用语法到处都是，不了解的可以自己百度，本篇文章不作详细说明。只是对一些以前没有接触过前后台交互的新手朋友们，在刚开始使用ajax时可能遇到的问题作以说明，而这也是我自己与一些朋友刚开始所遇到的问题。</p>
 <p>jQuery中的AJAX方法有好多，在这里，我就直接拿万能的 <code>$.ajax</code> 说事了，废话不多说，直接上代码图：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>麻雀虽小，但五脏俱全，这段代码虽然相当简单，不过不要紧，足够说明问题了，下面就对 <code>$.ajax{}</code> 内的语句逐一分析：</p>
-<h3 id="1-_url">1. url</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">url: <span class="string">'../QuestionFavorite/getSectionTreeByCId'</span>,</span><br></pre></td></tr></table></figure>
-<p><code>url</code> 规定请求所要发送的地址，请求分获取请求和提交请求。<br>通俗点讲，在进行前后台交互的时候，我们需要从后台获取数据，也会提交数据到后台，而不管我们是获取数据还是提交数据，都需要一个地址。获取数据你需要告诉别人你要从哪获取，提交数据你需要告诉别人你要提交到哪，而具体的地址是什么，当后台开发人员写好了，你就知道了。</p>
-<h3 id="2-_type">2. type</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">type: <span class="string">'post'</span>,</span><br></pre></td></tr></table></figure>
-<p><code>type</code> 是你所请求的方式，分为get和post两种方式。<br>关于get和post两种方法的区别，我在这也不多讲，大家自行百度就好了，另外在你百度的时候可以参考这篇关于get与post的文章 <a href="http://blog.sina.com.cn/s/blog_9f6de58301018axo.html" target="_blank" rel="external">不再以讹传讹，GET和POST的真正区别</a> 。</p>
-<h3 id="3-_dataType">3. dataType</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dataType: <span class="string">'json'</span>，</span><br></pre></td></tr></table></figure>
-<p><code>dataType</code> 规定预期的服务器响应的数据类型，有xml，html，text，script，json，jsonp六种。<br>这东西没什么好讲的，需要什么类型写什么类型就好。</p>
-<h3 id="4-_data">4. data</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">data: &#123;</span><br><span class="line">    <span class="string">'cId'</span>: cId</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
-<p><code>data</code> 规定要发送到服务器的数据，也就是服务器需要的东西。<br>肯定有新手朋友会问，到底服务器需要什么东西，我们要发送什么数据到服务器？举个例子：<br>如果你需要从服务器中获取东西，就好比你要买一个东西，卖家的仓库就是数据库，你需要卖家从仓库里拿出你想要的东西，你就得告诉他物品的名称或者编号，又或者其他与物品有关的。</p>
-<p>在实际开发中，你需要传给后台的数据都会很明显，你从后台程序里就能知道。</p>
-<h3 id="5-_success">5. success</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">success: <span class="function"><span class="keyword">function</span><span class="params">(data)</span> </span>&#123;</span><br><span class="line">    initsLst(data.sLst)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<p><code>success</code> 当请求成功时运行的函数，另外它有一个参数，<code>function(data)</code>。</p>
-<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="typedef"><span class="keyword">data</span> - 包含来自请求的结果数据</span></span><br></pre></td></tr></table></figure>
-<p>success状态函数其实还有两个参数，不过我从来没用过，所以也不知道具体干什么的，如果有用过的朋友可以留言告诉我一下，谢谢！</p>
-<p>我们还是讲讲这个 <code>data</code> 参数吧，这也是新手朋友们最不容易弄明白的地方。<code>data</code> 是我们从后台请求到的结果数据，数据分map和list两种格式，具体是什么样的，用firebug查看：<br><img src="%E5%95%8A" alt="firebug查看请求响应"></p>
-<p>如图，data就是 <code>响应</code> 这一栏里的东西，定义一个变了来更形象地表示：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> content = &#123;</span><br><span class="line">    <span class="string">"sLst"</span>:[&#123;</span><br><span class="line">    			<span class="string">"chapterId"</span>:<span class="string">"00001"</span>,<span class="string">"chapterName"</span>:<span class="string">"运动的描述"</span>,</span><br><span class="line">    		    <span class="string">"subLst"</span>:[&#123;</span><br><span class="line">    				        <span class="string">"sectionId"</span>:<span class="string">"000001"</span>,</span><br><span class="line">    				        <span class="string">"sectionName"</span>:<span class="string">"能通过对史实的解读识别近代实验科学产生的背景1"</span>,</span><br><span class="line">    			        	<span class="string">"cnt"</span>:<span class="number">1</span></span><br><span class="line">    			&#125;]</span><br><span class="line">    &#125;]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><code>success</code> 状态的函数里的参数 <code>data</code> 就等于 <code>content</code>；<br><code>initsLst(data.sLst)</code> 中的 <code>data.sLst</code> 就等于 <code>content.sLst</code> ，作为一个参数传递给了下面的 <code>initsLst(data)</code> 函数：<br><img src="%E5%95%8A" alt="initsLst(data)函数"></p>
-<h3 id="最后">最后</h3><p>第一张ajax程序图里，一个出现了4个 <strong>data</strong>，但是只有 <strong>success</strong> 状态函数里的两个 <strong>data</strong> 是同一个东西，其余两个代表的东西都是不一样的。</p>
-<p>文章有不足之处还望大家雅正，如果大家还有什么不明白的地方，也可以留言提出</p>
-
       
     </div>
     
@@ -269,6 +247,10 @@
 	</div>
 
 
+      
+        <p class="article-more-link">
+          <a  href="/2015/09/01/jQuery-AJAX初解/#more">more >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
