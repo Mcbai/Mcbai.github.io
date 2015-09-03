@@ -233,22 +233,7 @@
 <p>另外本文的教程是针对Windows系统，本人学生汪一只，买不起Mac，所以也就懒得去看Mac下的指令什么的了，虽然都大同小异。</p>
 <p>对于用过sass和compass的人都说好，那就应该错不了。虽然我也刚开始学这东西，但正因为我也是新手，所以写的东西更适合一些初学的朋友，要相信我的学习能力可是很强的哈！</p>
 <h3 id="1-_安装">1. 安装</h3><p>sass是用ruby语言开发出来的CSS预处理器，所以在安装sass之前必须要安装ruby，下载地址：</p>
-<p><a href="http://rubyinstaller.org/" target="_blank" rel="external">http://rubyinstaller.org/</a></p>
-<p>下载完后打开安装程序，另外建议安装在C盘下面，我之前装在D盘里面，然后安装完sass和compass后，运行sass和compass命令，总是显示 <code>&#39;“D:program files\”命令不存在&#39;</code> ，换在C盘里就好了，你们也可以试试，看看是不是只是个别情况。<br>安装时，记得勾选第二项，要不容易出错，这个我试过了，所以你们就不用再试了：<br><img src="http://7xlafz.com1.z0.glb.clouddn.com/ruby安装.png" alt="ruby安装"></p>
-<p>ruby安装完后，先别着急安装sass和compass，因为你基本上都安装不上，反正我是不行，网上说是国内网络原因，应该就是那堵墙吧，所以需要更换下载源。</p>
-<p>首先移除ruby自带的源：<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gem sources --remove <span class="symbol">http:</span>/<span class="regexp">/rubygems.org/</span></span><br></pre></td></tr></table></figure></p>
-<p>接着添加淘宝的源：<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gem sources -a <span class="symbol">http:</span>/<span class="regexp">/ruby.taobao.org/</span></span><br></pre></td></tr></table></figure></p>
-<p>添加完后，查看一下你现在的源：<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gem sources</span><br></pre></td></tr></table></figure></p>
-<p>如果显示：<br><img src="http://7xlafz.com1.z0.glb.clouddn.com/ruby源.png" alt="此处输入图片的描述"><br>说明你添加成功了！</p>
-<p>现在就可以安装sass了：<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gem install sass</span><br></pre></td></tr></table></figure></p>
-<p>检查一下sass版本，看看是否安装成功了：<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sass -v</span><br></pre></td></tr></table></figure></p>
-<p>我现在用的是最新版本的：<br><img src="http://7xlafz.com1.z0.glb.clouddn.com/sass版本.png" alt="此处输入图片的描述"><br>如果你想升级你sass版本，输入下面命令：<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gem update sass</span><br></pre></td></tr></table></figure></p>
-<p>如果你想卸载sass：<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gem uninstall sass</span><br></pre></td></tr></table></figure></p>
-<p>安装compass：<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gem install compass</span><br></pre></td></tr></table></figure></p>
-<p>查看版本：<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">compass -v</span><br></pre></td></tr></table></figure></p>
-<p>升级和卸载与sass命令一样，只是把 <code>sass</code> 换成 <code>compass</code> 就行，就不多说了。</p>
-<p>写累了，去撸两把，下一篇讲compass如何创建工程与配置文件！</p>
-
+<p><a href="http://rubyinstaller.org/">http://rubyinstaller.org/</a></p>
       
     </div>
     
@@ -264,6 +249,10 @@
 	</div>
 
 
+      
+        <p class="article-more-link">
+          <a  href="/2015/09/04/sass与compass详解之安装/#more">more >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
