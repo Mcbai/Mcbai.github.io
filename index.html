@@ -117,7 +117,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/sass-compass/" style="font-size: NaNpx;">-sass -compass</a><a href="/tags/ajax/" style="font-size: NaNpx;">ajax</a><a href="/tags/css/" style="font-size: NaNpx;">css</a><a href="/tags/github/" style="font-size: NaNpx;">github</a><a href="/tags/hexo/" style="font-size: NaNpx;">hexo</a><a href="/tags/reset/" style="font-size: NaNpx;">reset</a><a href="/tags/效率/" style="font-size: NaNpx;">效率</a>
+						<a href="/tags/ajax/" style="font-size: 10px;">ajax</a><a href="/tags/compass/" style="font-size: 20px;">compass</a><a href="/tags/css/" style="font-size: 10px;">css</a><a href="/tags/github/" style="font-size: 10px;">github</a><a href="/tags/hexo/" style="font-size: 10px;">hexo</a><a href="/tags/reset/" style="font-size: 10px;">reset</a><a href="/tags/sass/" style="font-size: 10px;">sass</a><a href="/tags/scss/" style="font-size: 10px;">scss</a><a href="/tags/效率/" style="font-size: 10px;">效率</a>
 					</div>
 				</section>
 				
@@ -203,6 +203,110 @@
 </nav>
       <div class="body-wrap">
   
+    <article id="post-sass与从pass详解之项目创建和配置" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/09/05/sass与从pass详解之项目创建和配置/" class="article-date">
+  	<time datetime="2015-09-05T07:37:04.000Z" itemprop="datePublished">2015-09-05</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/09/05/sass与从pass详解之项目创建和配置/">sass与从pass详解之项目创建和配置</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="1-_创建项目">1. 创建项目</h3><p>首先进入到你想创建工程的地方：<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="constant">X</span><span class="symbol">:</span> (跳转到你想创建工程的硬盘分区，如果想在<span class="constant">D</span>盘创建，就输入<span class="constant">D</span><span class="symbol">:</span>)</span><br><span class="line">cd xxx\xxx （进入你想创建工程的文件夹，比如想在一个名为test的文件夹里创建，输入cd test）</span><br></pre></td></tr></table></figure></p>
+<p>创建compass工程，输入命令：</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">compass create projectName</span><br></pre></td></tr></table></figure>
+<p>创建好后，工程目录应该是这样：</p>
+<pre><code>-<span class="ruby"> .sass-cache
+</span>-<span class="ruby"> sass
+</span>  |-- ie.scss
+  |-- print.scss
+  |-- screen.scss
+-<span class="ruby"> stylesheet
+</span>  |-- ie.css
+  |-- print.css
+  |-- screen.css
+-<span class="ruby"> config.rb</span>
+</code></pre><p>不过这不是我们想要的，起码那几个自动生成的 <code>.css</code> 和 <code>.scss</code> 文件我们基本上是用不到的，创建好了再来删也麻烦，所以何不一开始创建的时候就不要这些东西。</p>
+<h3 id="2-_创建一个干净的项目">2. 创建一个干净的项目</h3><p>接下来把创建好的工程删掉，重新输入命令：<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">compass create --bare sass1 (创建一个名叫sass1的工程)</span><br></pre></td></tr></table></figure></p>
+<p>这次创建完后，工程目录就干净了：</p>
+<pre><code>-<span class="ruby"> sass
+</span>-<span class="ruby"> config.rb</span>
+</code></pre><p>这次的确是把我们不用的文件都弄没了，不过在实际项目中，我们需要的文件夹肯定不止这些，还要 <code>css</code>，<code>images</code>，<code>js</code> 之类的文件夹对吧，那我们要一个一个来创建吗？当然不需要，一行命令就搞定了，不过这之前我们需要来修改下配置文件了：</p>
+<h3 id="3-_配置文件">3. 配置文件</h3><p><img src="http://7xlafz.com1.z0.glb.clouddn.com/config.png" alt="compass原配置文件"><br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">css_dir = <span class="string">"stylesheets"</span></span><br><span class="line">sass_dir = <span class="string">"sass"</span></span><br><span class="line">images_dir = <span class="string">"images"</span></span><br><span class="line">javascripts_dir = <span class="string">"javascripts"</span></span><br></pre></td></tr></table></figure></p>
+<p>这些是对应文件夹的名字，稍后会对他们做一些改变和添加，以便符合我平时的习惯。</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># output_style = :expanded or :nested or :compact or :compressed</span></span><br></pre></td></tr></table></figure>
+<p><code>output_style</code> 表示 <code>.scss</code>文件 转换为 <code>.css</code> 文件的输出格式，默认为 <code>expanded</code> 格式，当产品准备上线时，手动换成 <code>compressed</code> 格式。</p>
+<p><code># relative_assets = true</code> 表示是否是使用相对路径，通常会选择使用。</p>
+<p><code># line_comments = false</code> 表示不在.css文件中显示选择器在.scss文件中的位置，通常也会使用这个，显示选择器原位置的确没什么用。</p>
+<p>现在来修改配置文件，让它变成我们想要的：<br><img src="http://7xlafz.com1.z0.glb.clouddn.com/newconfig.png" alt="修改后的compass配置文件"><br>这样，就比较符合我平时的文件夹命名习惯了，大家可以根据自己的习惯更改。</p>
+<p>配置更改之后，我们的项目并没有变化，依然只有一个 <code>sass</code> 文件夹。现在我们来创建文件夹，一条命令就好：<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">md css images js fonts</span><br></pre></td></tr></table></figure></p>
+<p>我们可以在 <code>sass</code> 文件夹中再建三个 <code>.scss</code> 文件</p>
+<pre><code>_varible.scss：用来存放变量
+_mixin.scss：用来放混合宏
+<span class="keyword">index</span>.scss：页面的主体scss文件
+</code></pre><p>然后再在根目录建一个 <code>index.html</code> 文件。</p>
+<p>到此，我们的项目基本就创建完了：</p>
+<pre><code>-<span class="ruby"> .sass-cache
+</span>-<span class="ruby"> css
+</span>-<span class="ruby"> sass
+</span>  |-- _varible.scss
+  |-- _mixin.scss
+  |-- index.scss
+-<span class="ruby"> fonts
+</span>-<span class="ruby"> images
+</span>-<span class="ruby"> js
+</span>-<span class="ruby"> index.html
+</span>-<span class="ruby"> config.rb</span>
+</code></pre><p><strong>注意：</strong><br>应该有朋友发现 <code>_varible.scss</code> 和 <code>_mixin.scss</code> 两个文件名前面有下划线 <code>_</code> ，这个下划线非常重要，加了下划线的scss文件就不会被编译成css文件。另外 <code>.sass-cache</code> 是编译缓存文件，大家不用管他。</p>
+<p>现在可以把这个项目结构保存下来，以后要用，直接复制一份就好，然后再根据实际项目增添些文件就OK。</p>
+<p>创建项目就差不多这么多了，下一篇讲如何编译与调试scss文件。</p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/compass/">compass</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/scss/">scss</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/前端/">前端</a>
+	</div>
+
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+  
     <article id="post-sass与compass详解之安装" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -240,7 +344,7 @@
     <div class="article-info article-info-index">
       
 	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/sass-compass/">-sass -compass</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/compass/">compass</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/sass/">sass</a></li></ul>
 	</div>
 
       
